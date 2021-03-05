@@ -15,25 +15,23 @@ class MyApp(QWidget):
         self.setWindowIcon(QIcon('leehands.png'))
 
         c = Controller(address=0x45)
-        #volt = "%02.3f V" 
-        label1 = QLabel('Voltage %02.3f V'%(c.voltage()))
-        label1.setAlignment(Qt.AlignLeft)
-        font1 = label1.font()
-        font1.setPointSize(10)
-
-        label1.setFont(font1)
-        layout=QVBoxLayout()
-        layout.addWidget(label1)
-
-        self.setLayout(layout)
+        #volt = "%02.3f V"
+        self.qLbl = QLabel('Not Yet Init')
+        self.setCentralWidget(self.qLbl)
 
         self.move(300,300)
         self.resize(400,200)
         self.show()
+    def update(self):
+        self.qLbl.setText('Votage : %02.3fV' %(c.voltage()))
+    def run(self):
+        self.app.exec_()
+        
 
 
 if __name__== '__main__':
     app = QApplication(sys.argv)
     ex = MyApp()
+    ex.show()
     sys.exit(app.exec_())
 
